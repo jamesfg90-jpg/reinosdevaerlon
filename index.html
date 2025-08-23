@@ -18,41 +18,83 @@
   --shadow:rgba(0,0,0,.5);
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:"EB Garamond",serif;color:var(--ink);
-background:linear-gradient(180deg,var(--bg),var(--bg-2));}
-h1,h2,h3,h4{font-family:"Cinzel",serif;letter-spacing:.5px;color:var(--ink)}
-a{color:var(--accent);text-decoration:none}
-.container{display:grid;grid-template-columns:280px 1fr;gap:18px;max-width:1400px;margin:0 auto;padding:16px}
-@media(max-width:980px){.container{grid-template-columns:1fr}}
-aside{position:sticky;top:12px;align-self:start;background:var(--card);
-border:1px solid rgba(0,0,0,.08);box-shadow:0 6px 18px var(--shadow);
-border-radius:14px;padding:14px}
-.brand{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.brand .sigil{width:38px;height:38px;border-radius:50%;
-background:radial-gradient(60% 60% at 30% 30%,var(--accent-2),var(--accent));
-box-shadow:inset 0 0 0 2px rgba(0,0,0,.15),0 2px 6px var(--shadow);}
-nav a{display:block;padding:10px;border-radius:10px;color:var(--ink-2);font-weight:500}
-nav a.active,nav a:hover{background:rgba(0,0,0,.06);color:var(--ink)}
-.controls{display:flex;gap:8px;margin:10px 0 14px}
-button, .btn{font-family:inherit;border:none;background:var(--accent);color:#fff;
-padding:8px 10px;border-radius:10px;cursor:pointer;box-shadow:0 3px 10px var(--shadow)}
+html,body{height:100%}
+body{
+  margin:0; font-family:"EB Garamond",serif; color:var(--ink);
+  background:linear-gradient(180deg,var(--bg),var(--bg-2));
+}
+h1,h2,h3,h4{font-family:"Cinzel",serif; letter-spacing:.5px; color:var(--ink)}
+a{color:var(--accent); text-decoration:none}
+.container{display:grid; grid-template-columns:280px 1fr; gap:18px; max-width:1400px; margin:0 auto; padding:16px}
+@media (max-width:980px){ .container{grid-template-columns:1fr} }
+
+/* Sidebar */
+aside{
+  position:sticky; top:12px; align-self:start; background:var(--card);
+  border:1px solid rgba(0,0,0,.08); box-shadow:0 6px 18px var(--shadow);
+  border-radius:14px; padding:14px
+}
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:8px}
+.brand .sigil{
+  width:38px; height:38px; border-radius:50%;
+  background: radial-gradient(60% 60% at 30% 30%, var(--accent-2), var(--accent));
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.15), 0 2px 6px var(--shadow);
+}
+nav a{display:block; padding:10px; border-radius:10px; color:var(--ink-2); font-weight:500}
+nav a.active, nav a:hover{background:rgba(0,0,0,.06); color:var(--ink)}
+.controls{display:flex; gap:8px; margin:10px 0 14px}
+button,.btn{font-family:inherit;border:none;background:var(--accent);color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;box-shadow:0 3px 10px var(--shadow)}
 button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-input[type="search"]{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,.15);background:#fff3;color:var(--ink)}
-main{background:var(--card);border:1px solid rgba(0,0,0,.08);
-border-radius:16px;padding:18px;box-shadow:0 10px 24px var(--shadow);min-height:70vh}
-.hero{position:relative;height:280px;border-radius:14px;margin-bottom:16px;
-background-position:center;background-size:cover;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;
-background:rgba(0,0,0,.45);backdrop-filter:blur(2px);}
-.hero-overlay{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:100%}
-.hero-overlay h1{margin:0;font-size:2.8rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.6)}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-.card{grid-column:span 6;background:var(--card);border:1px solid rgba(0,0,0,.06);
-border-radius:12px;padding:14px;box-shadow:0 6px 12px var(--shadow)}
-.card.small{grid-column:span 4}.card.wide{grid-column:span 12}
-.meta{font-size:14px;color:var(--ink-2)}
-.tag{display:inline-block;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.08);margin-right:6px;font-size:.85rem}
-footer{opacity:.8;font-size:.9rem;margin-top:16px}
+input[type="search"]{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(0,0,0,.15); background:#fff3; color:var(--ink)}
+
+/* Main */
+main{
+  background:var(--card); border:1px solid rgba(0,0,0,.08);
+  border-radius:16px; padding:18px; box-shadow:0 10px 24px var(--shadow);
+  min-height:70vh
+}
+
+/* Hero */
+.hero{
+  position:relative; height:280px; border-radius:14px; margin-bottom:16px;
+  background-position:center; background-size:cover; overflow:hidden
+}
+.hero::before{
+  content:""; position:absolute; inset:0;
+  background:rgba(0,0,0,.45); backdrop-filter:blur(2px);
+}
+.hero-overlay{position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:100%}
+.hero-overlay h1{margin:0; font-size:2.8rem; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,.6)}
+
+/* Cards & grid */
+.grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+.card{grid-column:span 6; background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:14px; box-shadow:0 6px 12px var(--shadow)}
+.card.small{grid-column:span 4}
+.card.wide{grid-column:span 12}
+.meta{font-size:14px; color:var(--ink-2)}
+.tag{display:inline-block; padding:3px 8px; border-radius:999px; background:rgba(0,0,0,.08); margin-right:6px; font-size:.85rem}
+
+/* Tables */
+table{width:100%; border-collapse:collapse; border:1px solid rgba(0,0,0,.1); border-radius:12px; overflow:hidden}
+th,td{padding:10px; border-bottom:1px solid rgba(0,0,0,.06); text-align:left}
+tbody tr:hover{background:rgba(0,0,0,.04)}
+
+/* Map viewer */
+.map-wrap{position:relative; overflow:hidden; border-radius:12px; border:1px solid rgba(0,0,0,.1); background:#cfe7f7}
+#worldMap{transform-origin:0 0; cursor:grab; user-select:none; -webkit-user-drag:none; display:block; max-width:none}
+.map-controls{position:absolute; right:8px; top:8px; display:flex; flex-direction:column; gap:6px}
+.map-controls button{padding:6px 8px}
+.marker{
+  position:absolute; transform:translate(-50%,-50%); background:var(--accent); color:#fff; border-radius:50%;
+  width:12px; height:12px; box-shadow:0 0 0 2px rgba(255,255,255,.8), 0 2px 6px var(--shadow)
+}
+.marker:hover::after{
+  content:attr(data-name); position:absolute; left:14px; top:-2px; background:var(--card); color:var(--ink);
+  padding:4px 8px; border-radius:8px; border:1px solid rgba(0,0,0,.1); white-space:nowrap
+}
+
+/* Footer */
+footer{opacity:.8; font-size:.9rem; margin-top:16px}
 </style>
 </head>
 <body>
@@ -61,10 +103,13 @@ footer{opacity:.8;font-size:.9rem;margin-top:16px}
     <div class="brand"><div class="sigil"></div><div>
       <div style="font-family:Cinzel;font-weight:700;letter-spacing:1px">Crónicas de Vaerlon</div>
     </div></div>
+
     <div class="controls">
       <button class="ghost" id="toggleTheme" title="Tema claro/oscuro">🌓</button>
     </div>
+
     <input id="search" type="search" placeholder="Buscar (reinos, PNJ, conjuros…)" />
+
     <nav id="nav">
       <a href="#/inicio" class="active">🏠 Inicio</a>
       <a href="#/lore">📜 Lore</a>
@@ -78,54 +123,125 @@ footer{opacity:.8;font-size:.9rem;margin-top:16px}
       <a href="#/descargas">⬇️ Descargas</a>
     </nav>
   </aside>
-  <main id="app"></main>
+
+  <main id="app"><!-- contenido dinámico --></main>
 </div>
+
 <footer class="container" style="padding-top:0">
-  <div style="grid-column:1/-1;text-align:center" class="meta">
-    © Vaerlon — hecho con 🍞 y dados. Tema tipográfico: Cinzel & EB Garamond.
+  <div style="grid-column:1/-1; text-align:center" class="meta">
+    © Vaerlon — tema tipográfico: Cinzel & EB Garamond.
   </div>
 </footer>
+
 <script>
+/* =========================
+   DATA (edita aquí)
+   ========================= */
 const DATA = {
-  settings:{
-    worldName:"Vaerlon",
-    mapImage:"map-vaerlon.jpg",
-    heroImage:"img/hero.jpg", // tu nueva imagen
-    markers:[]
+  settings: {
+    worldName: "Vaerlon",
+    heroImage: "img/hero.jpg",        // <-- tu cabecera
+    mapImage:  "img/vaerlon-map.jpg", // <-- tu mapa
+    markers: [
+      {name:"Valdrheim", x:12.5, y:5.8, link:"#/reinos/valdrheim"},
+      {name:"Aeloria", x:57.2, y:33.0, link:"#/reinos/aeloria"},
+      {name:"Thalassor", x:60.7, y:57.4, link:"#/reinos/thalassor"},
+      {name:"Draevenhol", x:69.2, y:34.2, link:"#/reinos/draevenhol"},
+      {name:"Elarion", x:46.7, y:70.8, link:"#/reinos/elarion"},
+      {name:"Velrith", x:36.2, y:49.8, link:"#/reinos/velrith"},
+    ]
   },
-  lore:{intro:"**Un Mundo sin Creadores.** Vaerlon nació de fuerzas primordiales sin guía."},
-  realms:[
-    {id:"valdrheim",name:"Valdrheim",sigil:"❄️",blurb:"Norte helado.",details:"Torres de magia."},
-    {id:"aeloria",name:"Aeloria",sigil:"⛪",blurb:"Reino sagrado.",details:"Paladines y escribas."},
-    {id:"thalassor",name:"Thalassor",sigil:"⚓",blurb:"Puertos y piratas.",details:"Comercio y culto marino."},
-    {id:"draevenhol",name:"Draevenhol",sigil:"⛓️",blurb:"Imperio esclavista.",details:"Sombras del Senado."},
-    {id:"elarion",name:"Elarion",sigil:"🌿",blurb:"Bosques eternos.",details:"Magia élfica."},
-    {id:"velrith",name:"Velrith",sigil:"🕯️",blurb:"Costa de medianos y gnomos.",details:"Comercio discreto."}
+  lore: {
+    intro: `
+**Un Mundo sin Creadores.** Vaerlon nació de fuerzas primordiales sin guía.
+Los dragones tomaron forma y, tras su primera contienda, unos ascendieron, otros se hundieron,
+y el más antiguo descendió al núcleo del mundo, donde aún duerme.
+`,
+    epochs: [
+      {year:-2000, title:"A.E. — Antes del Eclipse", text:"Era de imperios y dioses parlantes; la magia fluía sin freno."},
+      {year:0, title:"0 E.D. — Eclipse de los Dioses", text:"Tres días de tinieblas; la realidad se resquebrajó."},
+      {year:843, title:"Grito de Krosh’Gar", text:"Del eco del campeón orco nacieron los primeros clanes."},
+      {year:1461, title:"Pacto de Thalassor", text:"El mar impuso sus leyes a piratas y mercaderes."},
+    ]
+  },
+  realms: [
+    { id:"valdrheim", name:"Valdrheim", sigil:"❄️",
+      blurb:"Norte helado, bibliotecas arcanas y torres de cristal.",
+      details:"El invierno piensa. Las órdenes de magia estudian el hielo como voluntad viva.",
+      npcs:["ylva","thrain","edda","maelis"]
+    },
+    { id:"aeloria", name:"Aeloria", sigil:"⛪", blurb:"Reino sagrado de templos y juramentos.", details:"Paladines y escribas sostienen el orden.", npcs:[] },
+    { id:"thalassor", name:"Thalassor", sigil:"⚓", blurb:"Puertos, piratas y culto a criaturas abisales.", details:"El comercio manda; el mar decide.", npcs:[] },
+    { id:"draevenhol", name:"Draevenhol", sigil:"⛓️", blurb:"Imperio de cadenas.", details:"Sombras en el Senado.", npcs:[] },
+    { id:"elarion", name:"Elarion", sigil:"🌿", blurb:"El canto del bosque eterno.", details:"Los elfos recuerdan; el mundo olvida.", npcs:[] },
+    { id:"velrith", name:"Velrith", sigil:"🕯️", blurb:"Costa de medianos y gnomos astutos.", details:"Comercio discreto y artes curiosas.", npcs:[] }
   ],
-  adventures:[
-    {title:"La Grieta de los Náufragos",where:"Clayard (Thalassor)",level:"2–4",hook:"La pesca muere; algo corrompe una grieta submarina."},
-    {title:"Las Runas que No Deben Ser",where:"Valdrheim",level:"8–10",hook:"Thrain necesita custodios para probar un patrón prohibido."}
+  npcs: [
+    { id:"ylva", name:"Ylva la Umbranieve", realm:"valdrheim", role:"Mística de las tormentas",
+      bio:"Errante temida; oye susurros en el viento. La tormenta le obedece cuando quiere.",
+      relevance:["Rituales del invierno","Presagios climáticos","Magia primigenia del frío"] },
+    { id:"thrain", name:"Thrain «Cenizas Eternas»", realm:"valdrheim", role:"Runólogo y forjador arcano",
+      bio:"Reactivó una forja encantada. Escribe runas que tuercen la realidad; perdió un brazo en el intento.",
+      relevance:["Forja rúnica","Artefactos dormidos","Runas prohibidas"] },
+    { id:"edda", name:"Edda, Guardiana del Ojo de Hielo", realm:"valdrheim", role:"Oráculo",
+      bio:"Interpreta futuros fragmentados en una esfera antigua.",
+      relevance:["Visiones trans-reino","Alertas tempranas","Elección de campeones"] },
+    { id:"maelis", name:"Maelis, el Exiliado del Alba", realm:"valdrheim", role:"Nigromante académico",
+      bio:"Busca el límite ético de la muerte; desterrado por interrogar a un rey difunto.",
+      relevance:["Rituales liminares","Amenazas sobrenaturales","Puente vida/muerte"] }
   ],
-  sessions:[
-    {date:"2025-02-21",title:"Sangre en Clayard",summary:"Nigromante y aldeanos zombificados. Se halló un grimorio menor."}
+  bestiary: [
+    { name:"Espectro de bruma", cr:"7", habitat:"Costas de Thalassor", note:"Amarra barcos con frío que no moja."},
+    { name:"Lobo de hielo ancestral", cr:"9", habitat:"Valdrheim", note:"La ventisca lo sigue."}
+  ],
+  adventures: [
+    { title:"La Grieta de los Náufragos", where:"Clayard (Thalassor)", level:"2–4", hook:"La pesca muere; algo corrompe una grieta submarina." },
+    { title:"Las Runas que No Deben Ser", where:"Valdrheim", level:"8–10", hook:"Thrain necesita custodios para probar un patrón prohibido." }
+  ],
+  sessions: [
+    { date:"2025-02-21", title:"Sangre en Clayard", summary:"Nigromante y aldeanos zombificados. Se halló un grimorio menor."}
+  ],
+  downloads: [
+    {name:"Hoja de personaje 3.5 (ES)", href:"https://example.com/hoja.pdf"},
+    {name:"SRD 3.5", href:"https://www.d20srd.org/"}
   ]
 };
-const $=(s,c=document)=>c.querySelector(s);const $$=(s,c=document)=>[...c.querySelectorAll(s)];
-const app=$("#app"),nav=$("#nav"),search=$("#search");
-function setActive(h){$$("nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")===h))}
-function md(t=""){return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}
+
+/* =========================
+   Helpers, router y vistas
+   ========================= */
+const $ = (sel,ctx=document)=>ctx.querySelector(sel);
+const $$ = (sel,ctx=document)=>[...ctx.querySelectorAll(sel)];
+const app = $("#app");
+const search = $("#search");
+
+function setActive(href){
+  $$("#nav a").forEach(a=>a.classList.toggle("active", a.getAttribute("href")===href));
+}
+function md(text=""){ // mini markdown simple
+  return text
+    .replace(/^### (.*$)/gim,'<h3>$1</h3>')
+    .replace(/^## (.*$)/gim,'<h2>$1</h2>')
+    .replace(/^# (.*$)/gim,'<h1>$1</h1>')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/\n\n/g,'<br/><br/>');
+}
+
+/* ---- Páginas ---- */
 function renderInicio(){
-  app.innerHTML=`
+  app.innerHTML = `
   <section class="hero" style="background-image:url('${DATA.settings.heroImage}');">
     <div class="hero-overlay"><h1>Crónicas de ${DATA.settings.worldName}</h1></div>
   </section>
+
   <section class="grid">
     <div class="card"><h3>Resumen del mundo</h3><p>${md(DATA.lore.intro)}</p></div>
     <div class="card small"><h3>Próximas aventuras</h3>
-      ${DATA.adventures.map(a=>`<div><span class="tag">${a.level}</span> <strong>${a.title}</strong> <span class="meta">— ${a.where}</span><br/><span class="meta">${a.hook}</span></div>`).join('<hr/>')}
+      ${DATA.adventures.slice(0,3).map(a=>`<div><span class="tag">${a.level}</span> <strong>${a.title}</strong> <span class="meta">— ${a.where}</span><br/><span class="meta">${a.hook}</span></div>`).join('<hr/>')}
     </div>
     <div class="card small"><h3>Registro reciente</h3>
-      ${DATA.sessions.map(s=>`<div><strong>${s.date}</strong> — ${s.title}<div class="meta">${s.summary}</div></div>`).join('<hr/>')}
+      ${DATA.sessions.slice(0,3).map(s=>`<div><strong>${s.date}</strong> — ${s.title}<div class="meta">${s.summary}</div></div>`).join('<hr/>')}
     </div>
     <div class="card wide"><h3>Reinos destacados</h3>
       <div class="grid">
@@ -140,11 +256,196 @@ function renderInicio(){
     </div>
   </section>`;
 }
-function router(){const h=location.hash||"#/inicio";setActive(h);renderInicio()}
-window.addEventListener("hashchange",router);router();
+
+function renderLore(){
+  app.innerHTML = `
+    <h1>Lore general</h1>
+    <div class="card">${md(DATA.lore.intro)}</div>
+    <div class="card"><h3>Épocas & Hitos</h3>
+      <table><thead><tr><th>Año</th><th>Evento</th><th>Descripción</th></tr></thead>
+      <tbody>
+        ${DATA.lore.epochs.map(e=>`<tr><td><strong>${e.year}</strong></td><td>${e.title}</td><td class="meta">${e.text}</td></tr>`).join('')}
+      </tbody></table>
+    </div>`;
+}
+
+function renderCronologia(){
+  app.innerHTML = `<h1>Cronología</h1>
+  <div class="card">
+    <input type="range" min="0" max="${DATA.lore.epochs.length-1}" value="${DATA.lore.epochs.length-1}" id="timelineRange" style="width:100%">
+    <div id="timelineView" style="margin-top:12px"></div>
+  </div>`;
+  const range = $("#timelineRange");
+  const view = $("#timelineView");
+  const paint = ()=> {
+    const idx = Number(range.value);
+    const e = DATA.lore.epochs[idx];
+    view.innerHTML = `<h3>${e.title}</h3><div class="meta">Año: ${e.year}</div><p>${e.text}</p>`;
+  };
+  range.oninput=paint; paint();
+}
+
+function renderMapa(){
+  app.innerHTML = `
+    <h1>Mapa del mundo</h1>
+    <div class="card">
+      <div class="map-wrap" id="mapWrap" style="height:520px">
+        <img id="worldMap" alt="Mapa de ${DATA.settings.worldName}" src="${DATA.settings.mapImage}" />
+        <div class="map-controls">
+          <button id="zoomIn">＋</button>
+          <button id="zoomOut">－</button>
+          <button id="zoomReset">⟲</button>
+        </div>
+      </div>
+      <div class="meta">Sustituye <code>DATA.settings.mapImage</code> por tu archivo real y ajusta marcadores en <code>DATA.settings.markers</code>.</div>
+    </div>`;
+  setupMap();
+}
+
+function renderReinos(){
+  app.innerHTML = `<h1>Reinos</h1>
+  <div class="grid">
+    ${DATA.realms.map(r=>`
+      <article class="card"><h3>${r.sigil} ${r.name}</h3>
+      <div class="meta">${r.blurb}</div>
+      <p>${r.details}</p>
+      <div class="meta">PNJ: ${r.npcs.length? r.npcs.map(id=>DATA.npcs.find(n=>n.id===id).name).join(", "): "—"}</div>
+      <div style="margin-top:8px"><a class="btn" href="#/reinos/${r.id}">Abrir ficha</a></div>
+      </article>`).join('')}
+  </div>`;
+}
+
+function renderReino(id){
+  const r = DATA.realms.find(x=>x.id===id);
+  if(!r){ app.innerHTML='<div class="card">Reino no encontrado.</div>'; return; }
+  app.innerHTML = `
+    <h1>${r.sigil} ${r.name}</h1>
+    <div class="grid">
+      <div class="card">${r.details}<br><br><span class="meta">${r.blurb}</span></div>
+      <div class="card"><h3>PNJ de ${r.name}</h3>
+        ${r.npcs.length? r.npcs.map(id=>{
+          const n = DATA.npcs.find(x=>x.id===id);
+          return `<div style="margin-bottom:10px"><strong>${n.name}</strong> — <em>${n.role}</em><br><span class="meta">${n.bio}</span><br>
+          <span class="meta">Relevancia: ${n.relevance.join(" · ")}</span></div>`;
+        }).join('<hr/>') : '<div class="meta">Sin PNJ cargados.</div>'}
+      </div>
+      <div class="card wide">
+        <a class="btn" href="#/mapa">Ver en el mapa</a>
+      </div>
+    </div>`;
+}
+
+function renderPNJ(){
+  app.innerHTML = `<h1>Personajes no jugadores</h1>
+  <div class="grid">
+    ${DATA.npcs.map(n=>`
+      <div class="card small"><h3>${n.name}</h3>
+        <div class="meta">${n.role} — ${DATA.realms.find(r=>r.id===n.realm)?.name||'—'}</div>
+        <p>${n.bio}</p><div class="meta">Relevancia: ${n.relevance.join(" · ")}</div>
+      </div>`).join('')}
+  </div>`;
+}
+
+function renderBestiario(){
+  app.innerHTML = `<h1>Bestiario</h1>
+    <div class="card"><table><thead><tr><th>Criatura</th><th>CR</th><th>Hábitat</th><th>Nota</th></tr></thead>
+      <tbody>${DATA.bestiary.map(b=>`<tr><td><strong>${b.name}</strong></td><td>${b.cr}</td><td>${b.habitat}</td><td class="meta">${b.note}</td></tr>`).join('')}</tbody>
+    </table></div>`;
+}
+
+function renderAventuras(){
+  app.innerHTML = `<h1>Aventuras</h1>
+  <div class="grid">
+    ${DATA.adventures.map(a=>`
+      <div class="card"><h3>${a.title}</h3>
+      <div class="meta">${a.where} — Niveles ${a.level}</div>
+      <p>${a.hook}</p></div>`).join('')}
+  </div>`;
+}
+
+function renderSesiones(){
+  app.innerHTML = `<h1>Registro de sesión</h1>
+  <div class="card">
+    ${DATA.sessions.map(s=>`<div style="margin:8px 0"><strong>${s.date}</strong> — ${s.title}<div class="meta">${s.summary}</div></div>`).join('<hr/>')}
+  </div>`;
+}
+
+function renderDescargas(){
+  app.innerHTML = `<h1>Descargas</h1>
+  <div class="card">
+    ${DATA.downloads.map(d=>`<div style="margin:.35rem 0"><a class="btn" href="${d.href}" target="_blank" rel="noopener">${d.name}</a></div>`).join('')}
+    <div class="meta" style="margin-top:10px">Sustituye los enlaces por tus archivos (GitHub Releases, Drive, etc.).</div>
+  </div>`;
+}
+
+/* ---- Mapa: pan/zoom + marcadores ---- */
+function setupMap(){
+  const wrap=$("#mapWrap"), img=$("#worldMap");
+  let scale=1, origin={x:0,y:0}, dragging=false, start={x:0,y:0};
+
+  img.onload=()=> placeMarkers();
+  function placeMarkers(){
+    $$(".marker",wrap).forEach(m=>m.remove());
+    DATA.settings.markers.forEach(m=>{
+      const el=document.createElement("a");
+      el.className="marker"; el.href=m.link||"#"; el.dataset.name=m.name;
+      el.style.left = (m.x)+"%"; el.style.top = (m.y)+"%";
+      wrap.appendChild(el);
+    });
+  }
+  const apply=()=> img.style.transform=`translate(${origin.x}px, ${origin.y}px) scale(${scale})`;
+  $("#zoomIn").onclick=()=>{scale=Math.min(4,scale*1.2); apply();}
+  $("#zoomOut").onclick=()=>{scale=Math.max(0.4,scale/1.2); apply();}
+  $("#zoomReset").onclick=()=>{scale=1; origin={x:0,y:0}; apply();}
+  img.onmousedown=(e)=>{dragging=true; img.style.cursor="grabbing"; start={x:e.clientX-origin.x,y:e.clientY-origin.y};}
+  window.onmouseup=()=>{dragging=false; img.style.cursor="grab";}
+  window.onmousemove=(e)=>{ if(!dragging) return; origin={x:e.clientX-start.x,y:e.clientY-start.y}; apply(); }
+}
+
+/* ---- Búsqueda ---- */
+function doSearch(q){
+  q=(q||"").trim().toLowerCase();
+  if(!q){ renderInicio(); return; }
+  const inRealm = DATA.realms.filter(r => (r.name+r.blurb+r.details).toLowerCase().includes(q));
+  const inNPC   = DATA.npcs.filter(n => (n.name+n.bio+n.role).toLowerCase().includes(q));
+  const inBeast = DATA.bestiary.filter(b => (b.name+b.habitat+b.note).toLowerCase().includes(q));
+  const inAdv   = DATA.adventures.filter(a => (a.title+a.where+a.hook).toLowerCase().includes(q));
+  app.innerHTML = `<h1>Resultados para “${q}”</h1>
+  <div class="card"><h3>Reinos</h3>${inRealm.length? inRealm.map(r=>`<div><a href="#/reinos/${r.id}">${r.name}</a> — <span class="meta">${r.blurb}</span></div>`).join(''):'<div class="meta">—</div>'}</div>
+  <div class="card"><h3>PNJ</h3>${inNPC.length? inNPC.map(n=>`<div><strong>${n.name}</strong> — <em>${n.role}</em></div>`).join(''):'<div class="meta">—</div>'}</div>
+  <div class="card"><h3>Bestiario</h3>${inBeast.length? inBeast.map(b=>`<div>${b.name} <span class="meta">(${b.habitat})</span></div>`).join(''):'<div class="meta">—</div>'}</div>
+  <div class="card"><h3>Aventuras</h3>${inAdv.length? inAdv.map(a=>`<div><strong>${a.title}</strong> — ${a.where}<br><span class="meta">${a.hook}</span></div>`).join(''):'<div class="meta">—</div>'}</div>`;
+}
+search.addEventListener("keydown",e=>{ if(e.key==="Enter") doSearch(search.value); });
+
+/* ---- Tema y router ---- */
 const themeBtn=$("#toggleTheme");
-function applyTheme(){const t=localStorage.getItem("theme")||"light";document.documentElement.classList.toggle("dark",t==="dark")}
-themeBtn.onclick=()=>{const t=localStorage.getItem("theme")==="dark"?"light":"dark";localStorage.setItem("theme",t);applyTheme()};applyTheme();
+function applyTheme(){ const t=localStorage.getItem("theme")||"light"; document.documentElement.classList.toggle("dark", t==="dark"); }
+themeBtn.onclick=()=>{ const t=localStorage.getItem("theme")==="dark" ? "light" : "dark"; localStorage.setItem("theme",t); applyTheme(); };
+applyTheme();
+
+function router(){
+  const hash = location.hash || "#/inicio";
+  setActive(hash);
+  const [_, route, param] = hash.split("/");
+  switch(route){
+    case "inicio": renderInicio(); break;
+    case "lore": renderLore(); break;
+    case "cronologia": renderCronologia(); break;
+    case "mapa": renderMapa(); break;
+    case "reinos": param? renderReino(param): renderReinos(); break;
+    case "pnj": renderPNJ(); break;
+    case "bestiario": renderBestiario(); break;
+    case "aventuras": renderAventuras(); break;
+    case "sesiones": renderSesiones(); break;
+    case "descargas": renderDescargas(); break;
+    default: renderInicio();
+  }
+  localStorage.setItem("lastRoute", hash);
+}
+window.addEventListener("hashchange", router);
+router();
+const last = localStorage.getItem("lastRoute"); if(last && last!==location.hash){ location.hash=last; }
 </script>
 </body>
 </html>

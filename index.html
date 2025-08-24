@@ -141,7 +141,7 @@ const DATA = {
   settings: {
     worldName: "Vaerlon",
     heroImage: "img/hero.jpg",        // <-- tu cabecera
-    mapImage:  "img/vaerlon-map.jpg", // <-- tu mapa
+    mapImage:  "Garia 2025-02-21-00-37.jpeg", // <-- tu mapa
     markers: [
       {name:"Valdrheim", x:12.5, y:5.8, link:"#/reinos/valdrheim"},
       {name:"Aeloria", x:57.2, y:33.0, link:"#/reinos/aeloria"},
@@ -289,7 +289,7 @@ function renderMapa(){
   app.innerHTML = `
     <h1>Mapa del mundo</h1>
     <div class="card">
-      <div class="map-wrap" id="mapWrap" style="height:520px">
+      <div class="map-wrap" id="mapWrap" style="height:700px">
         <img id="worldMap" alt="Mapa de ${DATA.settings.worldName}" src="${DATA.settings.mapImage}" />
         <div class="map-controls">
           <button id="zoomIn">＋</button>

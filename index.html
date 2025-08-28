@@ -122,18 +122,12 @@ footer{opacity:.8; font-size:.9rem; margin-top:16px; grid-column:1/-1; text-alig
 @keyframes slideIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
 
 /* Intro grimdark */
-.grim{
-  line-height:1.5;
-  color:var(--ink-2);
-}
+.grim{ line-height:1.5; color:var(--ink-2); }
 
 /* Galería de regiones */
-.regions{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
-}
+.regions{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 @media(max-width:1100px){ .regions{grid-template-columns:repeat(2,1fr)} }
 @media(max-width:640px){ .regions{grid-template-columns:1fr} }
-
 .region{
   display:block; border:1px solid rgba(0,0,0,.08); border-radius:12px;
   overflow:hidden; box-shadow:0 6px 12px var(--shadow); background:var(--card);
@@ -155,13 +149,8 @@ footer{opacity:.8; font-size:.9rem; margin-top:16px; grid-column:1/-1; text-alig
     <div class="brand"><div class="sigil"></div><div>
       <div style="font-family:Cinzel;font-weight:700;letter-spacing:1px">Crónicas de Vaerlon</div>
     </div></div>
-
-    <div class="controls">
-      <button class="ghost" id="toggleTheme" title="Tema claro/oscuro">🌓</button>
-    </div>
-
-    <input id="search" type="search" placeholder="Buscar (reinos, PNJ, conjuros…)" />
-
+    <div class="controls"><button class="ghost" id="toggleTheme">🌓</button></div>
+    <input id="search" type="search" placeholder="Buscar…" />
     <nav id="nav">
       <a href="#/inicio" class="active">🏠 Inicio</a>
       <a href="#/lore">📜 Lore</a>
@@ -171,79 +160,37 @@ footer{opacity:.8; font-size:.9rem; margin-top:16px; grid-column:1/-1; text-alig
       <a href="#/pnj">🧙 PNJ</a>
       <a href="#/bestiario">🐉 Bestiario</a>
       <a href="#/aventuras">🗡️ Aventuras</a>
-      <a href="#/sesiones">📝 Registro de sesión</a>
+      <a href="#/sesiones">📝 Registro</a>
       <a href="#/descargas">⬇️ Descargas</a>
     </nav>
   </aside>
-
   <main id="app"><!-- contenido dinámico --></main>
 </div>
-
-<footer class="container">
-  <div class="meta">
-    © Vaerlon — tema tipográfico: Cinzel & EB Garamond.
-  </div>
-</footer>
+<footer class="container"><div class="meta">© Vaerlon — Cinzel & EB Garamond</div></footer>
 
 <script>
-/* =========================
-   DATA (edita aquí)
-   ========================= */
+/* ===== DATA ===== */
 const DATA = {
-  settings: {
-    worldName: "Vaerlon",
-    heroImage: "img/hero.jpg",
-    mapImage: "img/vaerlon-map.jpg",
-    markers: [
-      {name:"Valdrheim", x:12.5, y:5.8, link:"#/reinos/valdrheim"},
-      {name:"Aeloria", x:57.2, y:33.0, link:"#/reinos/aeloria"},
-      {name:"Thalassor", x:60.7, y:57.4, link:"#/reinos/thalassor"},
-      {name:"Draevenhol", x:69.2, y:34.2, link:"#/reinos/draevenhol"},
-      {name:"Elarion", x:46.7, y:70.8, link:"#/reinos/elarion"},
-      {name:"Velrith", x:36.2, y:49.8, link:"#/reinos/velrith"}
-    ]
-  },
-  news: [
-    { type:"imperial", title:"Bando de la Prefectura", text:"El puente de **Harrow-Fenn** ha sido derrumbado por trolls. Se prohíbe el paso hasta nueva orden." },
-    { type:"juglar", title:"Balada del Callejón", text:"Dicen que en **Clayard** las mareas devoran barcas sin luna; un ojo sin párpado vigila el muelle." },
-    { type:"imperial", title:"Contratación urgente", text:"El **Fuerte Aulden** ofrece paga doble a mercenarios. Se requieren ballesteros y curanderos." },
-    { type:"juglar", title:"Corrido de Sangre", text:"En **Draevenhol** la noche compra hombres. Tres capas rojas cruzaron el mercado sin sombra." }
+  settings:{ worldName:"Vaerlon", heroImage:"img/hero.jpg", mapImage:"img/vaerlon-map.jpg",
+    markers:[ {name:"Valdrheim",x:12.5,y:5.8,link:"#/reinos/valdrheim"} ] },
+  news:[
+    {type:"imperial",title:"Bando de la Prefectura",text:"El puente de **Harrow-Fenn** ha sido derrumbado por trolls."},
+    {type:"juglar",title:"Balada del Callejón",text:"Dicen que en **Clayard** las mareas devoran barcas sin luna…"}
   ],
-  regions: [
-    { id:"valdrheim", name:"Valdrheim", img:"img/regions/valdrheim.jpg", blurb:"Hielo y runas que respiran." },
-    { id:"elarion",  name:"Elarion",  img:"img/regions/elarion.jpg",  blurb:"Bosques que recuerdan." },
-    { id:"thalassor",name:"Thalassor",img:"img/regions/thalassor.jpg",blurb:"Mareas y juramentos rotos." },
-    { id:"korvvaraz",name:"Korvvaraz",img:"img/regions/korvvaraz.jpg",blurb:"Arena, acero y silencio." }
-  ],
-  lore: {
-    intro: `
-**Un Mundo sin Creadores.** Vaerlon nació de fuerzas primordiales sin guía.
-Los dragones tomaron forma y, tras su primera contienda, unos ascendieron, otros se hundieron,
-y el más antiguo descendió al núcleo del mundo, donde aún duerme.
-`,
-    epochs: [
-      {year:-2000, title:"A.E. — Antes del Eclipse", text:"Era de imperios y dioses parlantes; la magia fluía sin freno."},
-      {year:0, title:"0 E.D. — Eclipse de los Dioses", text:"Tres días de tinieblas; la realidad se resquebrajó."},
-      {year:843, title:"Grito de Krosh’Gar", text:"Del eco del campeón orco nacieron los primeros clanes."},
-      {year:1461, title:"Pacto de Thalassor", text:"El mar impuso sus leyes a piratas y mercaderes."}
-    ]
-  },
-  realms: [
-    { id:"valdrheim", name:"Valdrheim", sigil:"❄️",
-      blurb:"Norte helado, bibliotecas arcanas y torres de cristal.",
-      details:"El invierno piensa. Las órdenes de magia estudian el hielo como voluntad viva.",
-      npcs:["ylva","thrain","edda","maelis"]
-    },
-    { id:"aeloria", name:"Aeloria", sigil:"⛪", blurb:"Reino sagrado de templos y juramentos.", details:"Paladines y escribas sostienen el orden.", npcs:[] },
-    { id:"thalassor", name:"Thalassor", sigil:"⚓", blurb:"Puertos, piratas y culto a criaturas abisales.", details:"El comercio manda; el mar decide.", npcs:[] },
-    { id:"draevenhol", name:"Draevenhol", sigil:"⛓️", blurb:"Imperio de cadenas.", details:"Sombras en el Senado.", npcs:[] },
-    { id:"elarion", name:"Elarion", sigil:"🌿", blurb:"El canto del bosque eterno.", details:"Los elfos recuerdan; el mundo olvida.", npcs:[] },
-    { id:"velrith", name:"Velrith", sigil:"🕯️", blurb:"Costa de medianos y gnomos astutos.", details:"Comercio discreto y artes curiosas.", npcs:[] }
-  ],
-  npcs: [
-    { id:"ylva", name:"Ylva la Umbranieve", realm:"valdrheim", role:"Mística de las tormentas",
-      bio:"Errante temida; oye susurros en el viento. La tormenta le obedece cuando quiere.",
-      relevance:["Rituales del invierno","Presagios climáticos","Magia primigenia del frío"] },
-    { id:"thrain", name:"Thrain «Cenizas Eternas»", realm:"valdrheim", role:"Runólogo y forjador arcano",
-      bio:"Reactivó una forja encantada. Escribe runas que tuercen la realidad; perdió un brazo en el intento.",
-      relevance:["Forja rúnica","Artefactos dormidos","Runas prohibidas"] },
+  regions:[ {id:"valdrheim",name:"Valdrheim",img:"img/regions/valdrheim.jpg",blurb:"Hielo y runas que respiran."} ],
+  lore:{ intro:"**Un Mundo sin Creadores.** …", epochs:[{year:0,title:"E.D.",text:"Eclipse de los Dioses"}] },
+  realms:[ {id:"valdrheim",name:"Valdrheim",sigil:"❄️",blurb:"Norte helado",details:"Torres de magia",npcs:[]} ],
+  npcs:[], bestiary:[], adventures:[], sessions:[], downloads:[]
+};
+/* Helpers */
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)], app=$("#app"), search=$("#search");
+function md(t=""){return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>').replace(/\n\n/g,'<br/><br/>');}
+/* Páginas */
+function renderInicio(){ app.innerHTML=`<section class="hero" style="background-image:url('${DATA.settings.heroImage}')"><div class="hero-overlay"><h1>Crónicas de ${DATA.settings.worldName}</h1></div></section>`; }
+/* Router */
+function setActive(h){ $$("#nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")===h)); }
+function router(){ const hash=location.hash||"#/inicio"; setActive(hash); const [_,r]=hash.split("/"); if(r==="inicio")renderInicio(); else app.innerHTML="<div class='card'>En construcción</div>"; }
+window.addEventListener("hashchange",router); router();
+</script>
+</body>
+</html>

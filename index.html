@@ -130,6 +130,58 @@ footer{opacity:.8; font-size:.9rem; margin-top:16px}
 <footer class="container" style="padding-top:0">
   <div style="grid-column:1/-1; text-align:center" class="meta">
     © Vaerlon — tema tipográfico: Cinzel & EB Garamond.
+    /* Ticker / Banner rotativo */
+.ticker{overflow:hidden}
+.ticker-head{
+  display:flex; align-items:center; gap:8px; margin-bottom:8px;
+  border-bottom:1px solid rgba(0,0,0,.08); padding-bottom:8px;
+}
+.ticker .tab{
+  padding:6px 10px; border-radius:10px; cursor:pointer; font-weight:600;
+  color:var(--ink-2);
+}
+.ticker .tab.active{ background:rgba(0,0,0,.06); color:var(--ink) }
+.ticker .spacer{flex:1}
+.ticker .controls button{padding:6px 8px}
+.ticker-body{min-height:74px; display:flex; align-items:center}
+.ticker-item{display:flex; gap:10px; align-items:flex-start; animation:slideIn .4s ease}
+.ticker-item .badge{
+  font-size:.75rem; letter-spacing:1px; border:1px solid rgba(0,0,0,.15);
+  padding:4px 6px; border-radius:6px; margin-top:3px;
+}
+.ticker-item.imperial .badge{ background:#2b3d55; color:#fff; border-color:#2b3d55 }
+.ticker-item.juglar .badge{ background:#6b3b20; color:#fff; border-color:#6b3b20 }
+.ticker-item .title{font-weight:700; margin-bottom:2px}
+.ticker-item .text{color:var(--ink-2)}
+@keyframes slideIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
+
+/* Intro grimdark */
+.grim{
+  line-height:1.5;
+  color:var(--ink-2);
+}
+
+/* Galería de regiones */
+.regions{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+}
+@media(max-width:1100px){ .regions{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:640px){ .regions{grid-template-columns:1fr} }
+
+.region{
+  display:block; border:1px solid rgba(0,0,0,.08); border-radius:12px;
+  overflow:hidden; box-shadow:0 6px 12px var(--shadow); background:var(--card);
+  transform:translateZ(0);
+}
+.region:hover{ transform:translateY(-2px) }
+.region-img{
+  height:160px; background-size:cover; background-position:center;
+  filter:contrast(1.05) saturate(1.05);
+}
+.region-info{ padding:10px }
+.region-name{ font-family:"Cinzel",serif; font-weight:700 }
+.region-blurb{ color:var(--ink-2); font-size:.95rem }
+
   </div>
 </footer>
 
@@ -138,6 +190,39 @@ footer{opacity:.8; font-size:.9rem; margin-top:16px}
    DATA (edita aquí)
    ========================= */
 const DATA = {
+  const DATA = {
+  settings: {
+    worldName: "Vaerlon",
+    heroImage: "img/hero.jpg",
+    mapImage: "img/vaerlon-map.jpg",
+    markers: [ /* ... */ ]
+  },
+
+  // === NUEVO: noticias para el banner ===
+  news: [
+    { type:"imperial", title:"Bando de la Prefectura", text:"El puente de **Harrow-Fenn** ha sido derrumbado por trolls. Se prohíbe el paso hasta nueva orden." },
+    { type:"juglar", title:"Balada del Callejón", text:"Dicen que en **Clayard** las mareas devoran barcas sin luna; un ojo sin párpado vigila el muelle." },
+    { type:"imperial", title:"Contratación urgente", text:"El **Fuerte Aulden** ofrece paga doble a mercenarios. Se requieren ballesteros y curanderos." },
+    { type:"juglar", title:"Corrido de Sangre", text:"En **Draevenhol** la noche compra hombres. Tres capas rojas cruzaron el mercado sin sombra." }
+  ],
+
+  // === NUEVO: regiones con imágenes (pon tus archivos) ===
+  regions: [
+    { id:"valdrheim", name:"Valdrheim", img:"img/regions/valdrheim.jpg", blurb:"Hielo y runas que respiran." },
+    { id:"elarion",  name:"Elarion",  img:"img/regions/elarion.jpg",  blurb:"Bosques que recuerdan." },
+    { id:"thalassor",name:"Thalassor",img:"img/regions/thalassor.jpg",blurb:"Mareas y juramentos rotos." },
+    { id:"korvvaraz",name:"Korvvaraz",img:"img/regions/korvvaraz.jpg",blurb:"Arena, acero y silencio." }
+  ],
+
+  lore: { /* tu texto como ya lo tengas */ },
+  realms: [ /* ... */ ],
+  npcs:   [ /* ... */ ],
+  bestiary:[ /* ... */ ],
+  adventures:[ /* ... */ ],
+  sessions:[ /* ... */ ],
+  downloads:[ /* ... */ ]
+};
+
   settings: {
     worldName: "Vaerlon",
     heroImage: "img/hero.jpg",        // <-- tu cabecera
@@ -235,27 +320,93 @@ function renderInicio(){
     <div class="hero-overlay"><h1>Crónicas de ${DATA.settings.worldName}</h1></div>
   </section>
 
-  <section class="grid">
-    <div class="card"><h3>Resumen del mundo</h3><p>${md(DATA.lore.intro)}</p></div>
-    <div class="card small"><h3>Próximas aventuras</h3>
-      ${DATA.adventures.slice(0,3).map(a=>`<div><span class="tag">${a.level}</span> <strong>${a.title}</strong> <span class="meta">— ${a.where}</span><br/><span class="meta">${a.hook}</span></div>`).join('<hr/>')}
-    </div>
-    <div class="card small"><h3>Registro reciente</h3>
-      ${DATA.sessions.slice(0,3).map(s=>`<div><strong>${s.date}</strong> — ${s.title}<div class="meta">${s.summary}</div></div>`).join('<hr/>')}
-    </div>
-    <div class="card wide"><h3>Reinos destacados</h3>
-      <div class="grid">
-        ${DATA.realms.map(r=>`
-          <div class="card small">
-            <div class="meta">${r.sigil}</div>
-            <h4 style="margin:.2rem 0">${r.name}</h4>
-            <div class="meta">${r.blurb}</div>
-            <div style="margin-top:8px"><a class="btn" href="#/reinos/${r.id}">Ver reino</a></div>
-          </div>`).join('')}
+  <!-- Banner rotativo -->
+  <section class="ticker card">
+    <div class="ticker-head">
+      <div class="tab active" data-filter="all">📰 Gaceta</div>
+      <div class="tab" data-filter="imperial">⚖️ Bando Imperial</div>
+      <div class="tab" data-filter="juglar">🎶 Coplas de Juglar</div>
+      <div class="spacer"></div>
+      <div class="controls">
+        <button class="ghost" id="prevNews">◀</button>
+        <button class="ghost" id="nextNews">▶</button>
       </div>
     </div>
-  </section>`;
+    <div class="ticker-body" id="tickerBody"></div>
+    <div class="ticker-foot meta">Haz clic en las pestañas para filtrar noticias. Pasa el ratón para pausar.</div>
+  </section>
+
+  <!-- Intro grimdark -->
+  <section class="card">
+    <h3>Estado del Mundo</h3>
+    <p class="grim">
+      No hay profecías que salven a nadie. Los puentes caen, las ciudades arden con la misma calma con la que amanece,
+      y las coronas pesan más que las espadas. En Vaerlon, la lluvia no limpia: deja al descubierto lo que nadie quiso mirar.
+      Los dragones duermen, pero sueñan; y los hombres despiertos todavía sangran por sus sueños.
+    </p>
+    <div style="margin-top:8px"><a class="btn" href="#/lore">Leer más</a></div>
+  </section>
+
+  <!-- Galería de regiones -->
+  <section>
+    <h3>Regiones</h3>
+    <div class="regions">
+      ${DATA.regions.map(r=>`
+        <a class="region" href="#/reinos/${r.id}" title="${r.name}">
+          <div class="region-img" style="background-image:url('${r.img}');"></div>
+          <div class="region-info">
+            <div class="region-name">${r.name}</div>
+            <div class="region-blurb">${r.blurb}</div>
+          </div>
+        </a>
+      `).join('')}
+    </div>
+  </section>
+  `;
+
+  // --- lógica del banner rotativo ---
+  const body = $("#tickerBody");
+  const prev = $("#prevNews"), next = $("#nextNews");
+  const tabs = $$(".ticker .tab");
+  let filter = "all";
+  let idx = 0, paused = false;
+
+  function filteredNews(){
+    return DATA.news.filter(n => filter==="all" ? true : n.type===filter);
+  }
+  function paint(){
+    const list = filteredNews();
+    if(list.length===0){ body.innerHTML = `<div class="ticker-item meta">No hay avisos.</div>`; return; }
+    const n = list[(idx % list.length + list.length) % list.length];
+    body.innerHTML = `
+      <div class="ticker-item ${n.type}">
+        <div class="badge">${n.type==="imperial"?"BANDO":"COPLA"}</div>
+        <div>
+          <div class="title">${n.title}</div>
+          <div class="text">${md(n.text)}</div>
+        </div>
+      </div>`;
+  }
+  function nextItem(){ idx++; paint(); }
+  function prevItem(){ idx--; paint(); }
+
+  let timer = setInterval(()=>{ if(!paused) nextItem(); }, 4500);
+  body.addEventListener("mouseenter", ()=> paused=true);
+  body.addEventListener("mouseleave", ()=> paused=false);
+  next.onclick = nextItem; prev.onclick = prevItem;
+
+  tabs.forEach(t=>{
+    t.onclick = ()=>{
+      tabs.forEach(x=>x.classList.remove("active"));
+      t.classList.add("active");
+      filter = t.dataset.filter;
+      idx = 0; paint();
+    };
+  });
+
+  paint();
 }
+
 
 function renderLore(){
   app.innerHTML = `

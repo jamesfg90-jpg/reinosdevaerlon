@@ -94,43 +94,9 @@ tbody tr:hover{background:rgba(0,0,0,.04)}
 }
 
 /* Footer */
-footer{opacity:.8; font-size:.9rem; margin-top:16px}
-</style>
-</head>
-<body>
-<div class="container">
-  <aside>
-    <div class="brand"><div class="sigil"></div><div>
-      <div style="font-family:Cinzel;font-weight:700;letter-spacing:1px">Crónicas de Vaerlon</div>
-    </div></div>
+footer{opacity:.8; font-size:.9rem; margin-top:16px; grid-column:1/-1; text-align:center}
 
-    <div class="controls">
-      <button class="ghost" id="toggleTheme" title="Tema claro/oscuro">🌓</button>
-    </div>
-
-    <input id="search" type="search" placeholder="Buscar (reinos, PNJ, conjuros…)" />
-
-    <nav id="nav">
-      <a href="#/inicio" class="active">🏠 Inicio</a>
-      <a href="#/lore">📜 Lore</a>
-      <a href="#/cronologia">⏳ Cronología</a>
-      <a href="#/mapa">🗺️ Mapa</a>
-      <a href="#/reinos">👑 Reinos</a>
-      <a href="#/pnj">🧙 PNJ</a>
-      <a href="#/bestiario">🐉 Bestiario</a>
-      <a href="#/aventuras">🗡️ Aventuras</a>
-      <a href="#/sesiones">📝 Registro de sesión</a>
-      <a href="#/descargas">⬇️ Descargas</a>
-    </nav>
-  </aside>
-
-  <main id="app"><!-- contenido dinámico --></main>
-</div>
-
-<footer class="container" style="padding-top:0">
-  <div style="grid-column:1/-1; text-align:center" class="meta">
-    © Vaerlon — tema tipográfico: Cinzel & EB Garamond.
-    /* Ticker / Banner rotativo */
+/* Ticker / Banner rotativo */
 .ticker{overflow:hidden}
 .ticker-head{
   display:flex; align-items:center; gap:8px; margin-bottom:8px;
@@ -181,7 +147,41 @@ footer{opacity:.8; font-size:.9rem; margin-top:16px}
 .region-info{ padding:10px }
 .region-name{ font-family:"Cinzel",serif; font-weight:700 }
 .region-blurb{ color:var(--ink-2); font-size:.95rem }
+</style>
+</head>
+<body>
+<div class="container">
+  <aside>
+    <div class="brand"><div class="sigil"></div><div>
+      <div style="font-family:Cinzel;font-weight:700;letter-spacing:1px">Crónicas de Vaerlon</div>
+    </div></div>
 
+    <div class="controls">
+      <button class="ghost" id="toggleTheme" title="Tema claro/oscuro">🌓</button>
+    </div>
+
+    <input id="search" type="search" placeholder="Buscar (reinos, PNJ, conjuros…)" />
+
+    <nav id="nav">
+      <a href="#/inicio" class="active">🏠 Inicio</a>
+      <a href="#/lore">📜 Lore</a>
+      <a href="#/cronologia">⏳ Cronología</a>
+      <a href="#/mapa">🗺️ Mapa</a>
+      <a href="#/reinos">👑 Reinos</a>
+      <a href="#/pnj">🧙 PNJ</a>
+      <a href="#/bestiario">🐉 Bestiario</a>
+      <a href="#/aventuras">🗡️ Aventuras</a>
+      <a href="#/sesiones">📝 Registro de sesión</a>
+      <a href="#/descargas">⬇️ Descargas</a>
+    </nav>
+  </aside>
+
+  <main id="app"><!-- contenido dinámico --></main>
+</div>
+
+<footer class="container">
+  <div class="meta">
+    © Vaerlon — tema tipográfico: Cinzel & EB Garamond.
   </div>
 </footer>
 
@@ -190,52 +190,31 @@ footer{opacity:.8; font-size:.9rem; margin-top:16px}
    DATA (edita aquí)
    ========================= */
 const DATA = {
-  const DATA = {
   settings: {
     worldName: "Vaerlon",
     heroImage: "img/hero.jpg",
     mapImage: "img/vaerlon-map.jpg",
-    markers: [ /* ... */ ]
-  },
-
-  // === NUEVO: noticias para el banner ===
-  news: [
-    { type:"imperial", title:"Bando de la Prefectura", text:"El puente de **Harrow-Fenn** ha sido derrumbado por trolls. Se prohíbe el paso hasta nueva orden." },
-    { type:"juglar", title:"Balada del Callejón", text:"Dicen que en **Clayard** las mareas devoran barcas sin luna; un ojo sin párpado vigila el muelle." },
-    { type:"imperial", title:"Contratación urgente", text:"El **Fuerte Aulden** ofrece paga doble a mercenarios. Se requieren ballesteros y curanderos." },
-    { type:"juglar", title:"Corrido de Sangre", text:"En **Draevenhol** la noche compra hombres. Tres capas rojas cruzaron el mercado sin sombra." }
-  ],
-
-  // === NUEVO: regiones con imágenes (pon tus archivos) ===
-  regions: [
-    { id:"valdrheim", name:"Valdrheim", img:"img/regions/valdrheim.jpg", blurb:"Hielo y runas que respiran." },
-    { id:"elarion",  name:"Elarion",  img:"img/regions/elarion.jpg",  blurb:"Bosques que recuerdan." },
-    { id:"thalassor",name:"Thalassor",img:"img/regions/thalassor.jpg",blurb:"Mareas y juramentos rotos." },
-    { id:"korvvaraz",name:"Korvvaraz",img:"img/regions/korvvaraz.jpg",blurb:"Arena, acero y silencio." }
-  ],
-
-  lore: { /* tu texto como ya lo tengas */ },
-  realms: [ /* ... */ ],
-  npcs:   [ /* ... */ ],
-  bestiary:[ /* ... */ ],
-  adventures:[ /* ... */ ],
-  sessions:[ /* ... */ ],
-  downloads:[ /* ... */ ]
-};
-
-  settings: {
-    worldName: "Vaerlon",
-    heroImage: "img/hero.jpg",        // <-- tu cabecera
-    mapImage:  "Garia 2025-02-21-00-37.jpeg", // <-- tu mapa
     markers: [
       {name:"Valdrheim", x:12.5, y:5.8, link:"#/reinos/valdrheim"},
       {name:"Aeloria", x:57.2, y:33.0, link:"#/reinos/aeloria"},
       {name:"Thalassor", x:60.7, y:57.4, link:"#/reinos/thalassor"},
       {name:"Draevenhol", x:69.2, y:34.2, link:"#/reinos/draevenhol"},
       {name:"Elarion", x:46.7, y:70.8, link:"#/reinos/elarion"},
-      {name:"Velrith", x:36.2, y:49.8, link:"#/reinos/velrith"},
+      {name:"Velrith", x:36.2, y:49.8, link:"#/reinos/velrith"}
     ]
   },
+  news: [
+    { type:"imperial", title:"Bando de la Prefectura", text:"El puente de **Harrow-Fenn** ha sido derrumbado por trolls. Se prohíbe el paso hasta nueva orden." },
+    { type:"juglar", title:"Balada del Callejón", text:"Dicen que en **Clayard** las mareas devoran barcas sin luna; un ojo sin párpado vigila el muelle." },
+    { type:"imperial", title:"Contratación urgente", text:"El **Fuerte Aulden** ofrece paga doble a mercenarios. Se requieren ballesteros y curanderos." },
+    { type:"juglar", title:"Corrido de Sangre", text:"En **Draevenhol** la noche compra hombres. Tres capas rojas cruzaron el mercado sin sombra." }
+  ],
+  regions: [
+    { id:"valdrheim", name:"Valdrheim", img:"img/regions/valdrheim.jpg", blurb:"Hielo y runas que respiran." },
+    { id:"elarion",  name:"Elarion",  img:"img/regions/elarion.jpg",  blurb:"Bosques que recuerdan." },
+    { id:"thalassor",name:"Thalassor",img:"img/regions/thalassor.jpg",blurb:"Mareas y juramentos rotos." },
+    { id:"korvvaraz",name:"Korvvaraz",img:"img/regions/korvvaraz.jpg",blurb:"Arena, acero y silencio." }
+  ],
   lore: {
     intro: `
 **Un Mundo sin Creadores.** Vaerlon nació de fuerzas primordiales sin guía.
@@ -246,7 +225,7 @@ y el más antiguo descendió al núcleo del mundo, donde aún duerme.
       {year:-2000, title:"A.E. — Antes del Eclipse", text:"Era de imperios y dioses parlantes; la magia fluía sin freno."},
       {year:0, title:"0 E.D. — Eclipse de los Dioses", text:"Tres días de tinieblas; la realidad se resquebrajó."},
       {year:843, title:"Grito de Krosh’Gar", text:"Del eco del campeón orco nacieron los primeros clanes."},
-      {year:1461, title:"Pacto de Thalassor", text:"El mar impuso sus leyes a piratas y mercaderes."},
+      {year:1461, title:"Pacto de Thalassor", text:"El mar impuso sus leyes a piratas y mercaderes."}
     ]
   },
   realms: [
@@ -268,335 +247,3 @@ y el más antiguo descendió al núcleo del mundo, donde aún duerme.
     { id:"thrain", name:"Thrain «Cenizas Eternas»", realm:"valdrheim", role:"Runólogo y forjador arcano",
       bio:"Reactivó una forja encantada. Escribe runas que tuercen la realidad; perdió un brazo en el intento.",
       relevance:["Forja rúnica","Artefactos dormidos","Runas prohibidas"] },
-    { id:"edda", name:"Edda, Guardiana del Ojo de Hielo", realm:"valdrheim", role:"Oráculo",
-      bio:"Interpreta futuros fragmentados en una esfera antigua.",
-      relevance:["Visiones trans-reino","Alertas tempranas","Elección de campeones"] },
-    { id:"maelis", name:"Maelis, el Exiliado del Alba", realm:"valdrheim", role:"Nigromante académico",
-      bio:"Busca el límite ético de la muerte; desterrado por interrogar a un rey difunto.",
-      relevance:["Rituales liminares","Amenazas sobrenaturales","Puente vida/muerte"] }
-  ],
-  bestiary: [
-    { name:"Espectro de bruma", cr:"7", habitat:"Costas de Thalassor", note:"Amarra barcos con frío que no moja."},
-    { name:"Lobo de hielo ancestral", cr:"9", habitat:"Valdrheim", note:"La ventisca lo sigue."}
-  ],
-  adventures: [
-    { title:"La Grieta de los Náufragos", where:"Clayard (Thalassor)", level:"2–4", hook:"La pesca muere; algo corrompe una grieta submarina." },
-    { title:"Las Runas que No Deben Ser", where:"Valdrheim", level:"8–10", hook:"Thrain necesita custodios para probar un patrón prohibido." }
-  ],
-  sessions: [
-    { date:"2025-02-21", title:"Sangre en Clayard", summary:"Nigromante y aldeanos zombificados. Se halló un grimorio menor."}
-  ],
-  downloads: [
-    {name:"Hoja de personaje 3.5 (ES)", href:"https://example.com/hoja.pdf"},
-    {name:"SRD 3.5", href:"https://www.d20srd.org/"}
-  ]
-};
-
-/* =========================
-   Helpers, router y vistas
-   ========================= */
-const $ = (sel,ctx=document)=>ctx.querySelector(sel);
-const $$ = (sel,ctx=document)=>[...ctx.querySelectorAll(sel)];
-const app = $("#app");
-const search = $("#search");
-
-function setActive(href){
-  $$("#nav a").forEach(a=>a.classList.toggle("active", a.getAttribute("href")===href));
-}
-function md(text=""){ // mini markdown simple
-  return text
-    .replace(/^### (.*$)/gim,'<h3>$1</h3>')
-    .replace(/^## (.*$)/gim,'<h2>$1</h2>')
-    .replace(/^# (.*$)/gim,'<h1>$1</h1>')
-    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g,'<em>$1</em>')
-    .replace(/\n\n/g,'<br/><br/>');
-}
-
-/* ---- Páginas ---- */
-function renderInicio(){
-  app.innerHTML = `
-  <section class="hero" style="background-image:url('${DATA.settings.heroImage}');">
-    <div class="hero-overlay"><h1>Crónicas de ${DATA.settings.worldName}</h1></div>
-  </section>
-
-  <!-- Banner rotativo -->
-  <section class="ticker card">
-    <div class="ticker-head">
-      <div class="tab active" data-filter="all">📰 Gaceta</div>
-      <div class="tab" data-filter="imperial">⚖️ Bando Imperial</div>
-      <div class="tab" data-filter="juglar">🎶 Coplas de Juglar</div>
-      <div class="spacer"></div>
-      <div class="controls">
-        <button class="ghost" id="prevNews">◀</button>
-        <button class="ghost" id="nextNews">▶</button>
-      </div>
-    </div>
-    <div class="ticker-body" id="tickerBody"></div>
-    <div class="ticker-foot meta">Haz clic en las pestañas para filtrar noticias. Pasa el ratón para pausar.</div>
-  </section>
-
-  <!-- Intro grimdark -->
-  <section class="card">
-    <h3>Estado del Mundo</h3>
-    <p class="grim">
-      No hay profecías que salven a nadie. Los puentes caen, las ciudades arden con la misma calma con la que amanece,
-      y las coronas pesan más que las espadas. En Vaerlon, la lluvia no limpia: deja al descubierto lo que nadie quiso mirar.
-      Los dragones duermen, pero sueñan; y los hombres despiertos todavía sangran por sus sueños.
-    </p>
-    <div style="margin-top:8px"><a class="btn" href="#/lore">Leer más</a></div>
-  </section>
-
-  <!-- Galería de regiones -->
-  <section>
-    <h3>Regiones</h3>
-    <div class="regions">
-      ${DATA.regions.map(r=>`
-        <a class="region" href="#/reinos/${r.id}" title="${r.name}">
-          <div class="region-img" style="background-image:url('${r.img}');"></div>
-          <div class="region-info">
-            <div class="region-name">${r.name}</div>
-            <div class="region-blurb">${r.blurb}</div>
-          </div>
-        </a>
-      `).join('')}
-    </div>
-  </section>
-  `;
-
-  // --- lógica del banner rotativo ---
-  const body = $("#tickerBody");
-  const prev = $("#prevNews"), next = $("#nextNews");
-  const tabs = $$(".ticker .tab");
-  let filter = "all";
-  let idx = 0, paused = false;
-
-  function filteredNews(){
-    return DATA.news.filter(n => filter==="all" ? true : n.type===filter);
-  }
-  function paint(){
-    const list = filteredNews();
-    if(list.length===0){ body.innerHTML = `<div class="ticker-item meta">No hay avisos.</div>`; return; }
-    const n = list[(idx % list.length + list.length) % list.length];
-    body.innerHTML = `
-      <div class="ticker-item ${n.type}">
-        <div class="badge">${n.type==="imperial"?"BANDO":"COPLA"}</div>
-        <div>
-          <div class="title">${n.title}</div>
-          <div class="text">${md(n.text)}</div>
-        </div>
-      </div>`;
-  }
-  function nextItem(){ idx++; paint(); }
-  function prevItem(){ idx--; paint(); }
-
-  let timer = setInterval(()=>{ if(!paused) nextItem(); }, 4500);
-  body.addEventListener("mouseenter", ()=> paused=true);
-  body.addEventListener("mouseleave", ()=> paused=false);
-  next.onclick = nextItem; prev.onclick = prevItem;
-
-  tabs.forEach(t=>{
-    t.onclick = ()=>{
-      tabs.forEach(x=>x.classList.remove("active"));
-      t.classList.add("active");
-      filter = t.dataset.filter;
-      idx = 0; paint();
-    };
-  });
-
-  paint();
-}
-
-
-function renderLore(){
-  app.innerHTML = `
-    <h1>Lore general</h1>
-    <div class="card">${md(DATA.lore.intro)}</div>
-    <div class="card"><h3>Épocas & Hitos</h3>
-      <table><thead><tr><th>Año</th><th>Evento</th><th>Descripción</th></tr></thead>
-      <tbody>
-        ${DATA.lore.epochs.map(e=>`<tr><td><strong>${e.year}</strong></td><td>${e.title}</td><td class="meta">${e.text}</td></tr>`).join('')}
-      </tbody></table>
-    </div>`;
-}
-
-function renderCronologia(){
-  app.innerHTML = `<h1>Cronología</h1>
-  <div class="card">
-    <input type="range" min="0" max="${DATA.lore.epochs.length-1}" value="${DATA.lore.epochs.length-1}" id="timelineRange" style="width:100%">
-    <div id="timelineView" style="margin-top:12px"></div>
-  </div>`;
-  const range = $("#timelineRange");
-  const view = $("#timelineView");
-  const paint = ()=> {
-    const idx = Number(range.value);
-    const e = DATA.lore.epochs[idx];
-    view.innerHTML = `<h3>${e.title}</h3><div class="meta">Año: ${e.year}</div><p>${e.text}</p>`;
-  };
-  range.oninput=paint; paint();
-}
-
-function renderMapa(){
-  app.innerHTML = `
-    <h1>Mapa del mundo</h1>
-    <div class="card">
-      <div class="map-wrap" id="mapWrap" style="height:480">
-        <img id="worldMap" alt="Mapa de ${DATA.settings.worldName}" src="${DATA.settings.mapImage}" />
-        <div class="map-controls">
-          <button id="zoomIn">＋</button>
-          <button id="zoomOut">－</button>
-          <button id="zoomReset">⟲</button>
-        </div>
-      </div>
-      <div class="meta">Sustituye <code>DATA.settings.mapImage</code> por tu archivo real y ajusta marcadores en <code>DATA.settings.markers</code>.</div>
-    </div>`;
-  setupMap();
-}
-
-function renderReinos(){
-  app.innerHTML = `<h1>Reinos</h1>
-  <div class="grid">
-    ${DATA.realms.map(r=>`
-      <article class="card"><h3>${r.sigil} ${r.name}</h3>
-      <div class="meta">${r.blurb}</div>
-      <p>${r.details}</p>
-      <div class="meta">PNJ: ${r.npcs.length? r.npcs.map(id=>DATA.npcs.find(n=>n.id===id).name).join(", "): "—"}</div>
-      <div style="margin-top:8px"><a class="btn" href="#/reinos/${r.id}">Abrir ficha</a></div>
-      </article>`).join('')}
-  </div>`;
-}
-
-function renderReino(id){
-  const r = DATA.realms.find(x=>x.id===id);
-  if(!r){ app.innerHTML='<div class="card">Reino no encontrado.</div>'; return; }
-  app.innerHTML = `
-    <h1>${r.sigil} ${r.name}</h1>
-    <div class="grid">
-      <div class="card">${r.details}<br><br><span class="meta">${r.blurb}</span></div>
-      <div class="card"><h3>PNJ de ${r.name}</h3>
-        ${r.npcs.length? r.npcs.map(id=>{
-          const n = DATA.npcs.find(x=>x.id===id);
-          return `<div style="margin-bottom:10px"><strong>${n.name}</strong> — <em>${n.role}</em><br><span class="meta">${n.bio}</span><br>
-          <span class="meta">Relevancia: ${n.relevance.join(" · ")}</span></div>`;
-        }).join('<hr/>') : '<div class="meta">Sin PNJ cargados.</div>'}
-      </div>
-      <div class="card wide">
-        <a class="btn" href="#/mapa">Ver en el mapa</a>
-      </div>
-    </div>`;
-}
-
-function renderPNJ(){
-  app.innerHTML = `<h1>Personajes no jugadores</h1>
-  <div class="grid">
-    ${DATA.npcs.map(n=>`
-      <div class="card small"><h3>${n.name}</h3>
-        <div class="meta">${n.role} — ${DATA.realms.find(r=>r.id===n.realm)?.name||'—'}</div>
-        <p>${n.bio}</p><div class="meta">Relevancia: ${n.relevance.join(" · ")}</div>
-      </div>`).join('')}
-  </div>`;
-}
-
-function renderBestiario(){
-  app.innerHTML = `<h1>Bestiario</h1>
-    <div class="card"><table><thead><tr><th>Criatura</th><th>CR</th><th>Hábitat</th><th>Nota</th></tr></thead>
-      <tbody>${DATA.bestiary.map(b=>`<tr><td><strong>${b.name}</strong></td><td>${b.cr}</td><td>${b.habitat}</td><td class="meta">${b.note}</td></tr>`).join('')}</tbody>
-    </table></div>`;
-}
-
-function renderAventuras(){
-  app.innerHTML = `<h1>Aventuras</h1>
-  <div class="grid">
-    ${DATA.adventures.map(a=>`
-      <div class="card"><h3>${a.title}</h3>
-      <div class="meta">${a.where} — Niveles ${a.level}</div>
-      <p>${a.hook}</p></div>`).join('')}
-  </div>`;
-}
-
-function renderSesiones(){
-  app.innerHTML = `<h1>Registro de sesión</h1>
-  <div class="card">
-    ${DATA.sessions.map(s=>`<div style="margin:8px 0"><strong>${s.date}</strong> — ${s.title}<div class="meta">${s.summary}</div></div>`).join('<hr/>')}
-  </div>`;
-}
-
-function renderDescargas(){
-  app.innerHTML = `<h1>Descargas</h1>
-  <div class="card">
-    ${DATA.downloads.map(d=>`<div style="margin:.35rem 0"><a class="btn" href="${d.href}" target="_blank" rel="noopener">${d.name}</a></div>`).join('')}
-    <div class="meta" style="margin-top:10px">Sustituye los enlaces por tus archivos (GitHub Releases, Drive, etc.).</div>
-  </div>`;
-}
-
-/* ---- Mapa: pan/zoom + marcadores ---- */
-function setupMap(){
-  const wrap=$("#mapWrap"), img=$("#worldMap");
-  let scale=1, origin={x:0,y:0}, dragging=false, start={x:0,y:0};
-
-  img.onload=()=> placeMarkers();
-  function placeMarkers(){
-    $$(".marker",wrap).forEach(m=>m.remove());
-    DATA.settings.markers.forEach(m=>{
-      const el=document.createElement("a");
-      el.className="marker"; el.href=m.link||"#"; el.dataset.name=m.name;
-      el.style.left = (m.x)+"%"; el.style.top = (m.y)+"%";
-      wrap.appendChild(el);
-    });
-  }
-  const apply=()=> img.style.transform=`translate(${origin.x}px, ${origin.y}px) scale(${scale})`;
-  $("#zoomIn").onclick=()=>{scale=Math.min(4,scale*1.2); apply();}
-  $("#zoomOut").onclick=()=>{scale=Math.max(0.4,scale/1.2); apply();}
-  $("#zoomReset").onclick=()=>{scale=1; origin={x:0,y:0}; apply();}
-  img.onmousedown=(e)=>{dragging=true; img.style.cursor="grabbing"; start={x:e.clientX-origin.x,y:e.clientY-origin.y};}
-  window.onmouseup=()=>{dragging=false; img.style.cursor="grab";}
-  window.onmousemove=(e)=>{ if(!dragging) return; origin={x:e.clientX-start.x,y:e.clientY-start.y}; apply(); }
-}
-
-/* ---- Búsqueda ---- */
-function doSearch(q){
-  q=(q||"").trim().toLowerCase();
-  if(!q){ renderInicio(); return; }
-  const inRealm = DATA.realms.filter(r => (r.name+r.blurb+r.details).toLowerCase().includes(q));
-  const inNPC   = DATA.npcs.filter(n => (n.name+n.bio+n.role).toLowerCase().includes(q));
-  const inBeast = DATA.bestiary.filter(b => (b.name+b.habitat+b.note).toLowerCase().includes(q));
-  const inAdv   = DATA.adventures.filter(a => (a.title+a.where+a.hook).toLowerCase().includes(q));
-  app.innerHTML = `<h1>Resultados para “${q}”</h1>
-  <div class="card"><h3>Reinos</h3>${inRealm.length? inRealm.map(r=>`<div><a href="#/reinos/${r.id}">${r.name}</a> — <span class="meta">${r.blurb}</span></div>`).join(''):'<div class="meta">—</div>'}</div>
-  <div class="card"><h3>PNJ</h3>${inNPC.length? inNPC.map(n=>`<div><strong>${n.name}</strong> — <em>${n.role}</em></div>`).join(''):'<div class="meta">—</div>'}</div>
-  <div class="card"><h3>Bestiario</h3>${inBeast.length? inBeast.map(b=>`<div>${b.name} <span class="meta">(${b.habitat})</span></div>`).join(''):'<div class="meta">—</div>'}</div>
-  <div class="card"><h3>Aventuras</h3>${inAdv.length? inAdv.map(a=>`<div><strong>${a.title}</strong> — ${a.where}<br><span class="meta">${a.hook}</span></div>`).join(''):'<div class="meta">—</div>'}</div>`;
-}
-search.addEventListener("keydown",e=>{ if(e.key==="Enter") doSearch(search.value); });
-
-/* ---- Tema y router ---- */
-const themeBtn=$("#toggleTheme");
-function applyTheme(){ const t=localStorage.getItem("theme")||"light"; document.documentElement.classList.toggle("dark", t==="dark"); }
-themeBtn.onclick=()=>{ const t=localStorage.getItem("theme")==="dark" ? "light" : "dark"; localStorage.setItem("theme",t); applyTheme(); };
-applyTheme();
-
-function router(){
-  const hash = location.hash || "#/inicio";
-  setActive(hash);
-  const [_, route, param] = hash.split("/");
-  switch(route){
-    case "inicio": renderInicio(); break;
-    case "lore": renderLore(); break;
-    case "cronologia": renderCronologia(); break;
-    case "mapa": renderMapa(); break;
-    case "reinos": param? renderReino(param): renderReinos(); break;
-    case "pnj": renderPNJ(); break;
-    case "bestiario": renderBestiario(); break;
-    case "aventuras": renderAventuras(); break;
-    case "sesiones": renderSesiones(); break;
-    case "descargas": renderDescargas(); break;
-    default: renderInicio();
-  }
-  localStorage.setItem("lastRoute", hash);
-}
-window.addEventListener("hashchange", router);
-router();
-const last = localStorage.getItem("lastRoute"); if(last && last!==location.hash){ location.hash=last; }
-</script>
-</body>
-</html>
